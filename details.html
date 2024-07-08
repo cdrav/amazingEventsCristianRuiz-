@@ -3,20 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detalles del Evento</title>
-  <link rel="icon" href="./Images/favicon.png">
+  <title>Detalles de Eventos</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="./index.html">
-          <img src="./Images/amazing_brand.png" alt="Logo" style="height: 40px;">
-          
-        </a>
-    <div class="collapse navbar-collapse">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="./Images/amazing_brand.png" alt="Logo" style="height: 40px;">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a class="nav-link ml-5 " href="./index.html">HOME</a></li>
+        <li class="nav-item"><a class="nav-link ml-5" href="./index.html">HOME</a></li>
         <li class="nav-item"><a class="nav-link" href="./upcoming-events.html">UPCOMING EVENTS</a></li>
         <li class="nav-item"><a class="nav-link" href="./past-events.html">PAST EVENTS</a></li>
         <li class="nav-item"><a class="nav-link" href="./contact.html">CONTACT</a></li>
@@ -24,9 +26,54 @@
       </ul>
     </div>
   </nav>
-  <div class="container">
-    <h1>Detalles del Evento</h1>
-    <p>Detalles completos sobre el evento seleccionado.</p>
+  
+  <!-- Main Content -->
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="./Images/cinema.jpg" class="card-img" alt="Evento 1">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Evento</h5>
+                <p class="card-text">id: 7</p>
+                <p class="card-text">name: Avengers</p>
+                <p class="card-text">date: 2023-10-15</p>
+                <p class="card-text">description: Marvel's Avengers 3d premiere the start of an epic saga with your best superheroes</p>
+                <p class="card-text">category: Let's go to the cinema</p>
+                <p class="card-text">place: Room D1</p>
+                <p class="card-text">capacity: 9000</p>
+                <p class="card-text">assistance: 9000</p>
+                <p class="card-text">price: $250</p>
+                <a href="details.html" class="btn btn-primary">Detalles</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="text-center mt-4">
+      <div class="social-links mb-3">
+        <a href="https://www.facebook.com" target="_blank" class="mr-2">
+          <img src="./Images/facebook.png" alt="Facebook" style="height: 40px;">
+        </a>
+        <a href="https://www.whatsapp.com" target="_blank" class="mr-2">
+          <img src="./Images/whatsapp.png" alt="WhatsApp" style="height: 40px;">
+        </a>
+        <a href="https://www.instagram.com" target="_blank">
+          <img src="./Images/instagram.png" alt="Instagram" style="height: 40px;">
+        </a>
+      </div>
+      <div class="cohort">COHORT</div>
+    </footer>
   </div>
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

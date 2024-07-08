@@ -241,3 +241,16 @@ h1 {
   font-size: 16px;
   line-height: 1.6;
 }
+
+.social-icons {
+  display: inline-block; /* Hace que los elementos dentro de .social-icons se alineen en línea */
+}
+
+.social-icons .d-inline-block {
+  margin-right: 10px; /* Espacio entre los iconos de redes sociales */
+}
+
+.social-icons .cohort {
+  float:right; /* Alinea COHORT a la derecha */
+  margin:auto /* Espacio superior para separarlo un poco de los iconos */
+}

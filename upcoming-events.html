@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicio</title>
-  <link rel="icon" href="#">
+  <title>HOME</title>
+  <link rel="icon" href="./Images/favicon.png">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
       <img src="./Images/amazing_brand.png" alt="Logo" style="height: 40px;">
     </a>
@@ -32,7 +32,7 @@
   <div class="container mt-4">
     <div class="row">
       <div class="col-12 text-center">
-        <h1>UPCOMING EVENTS</h1>
+        <h1>HOME</h1>
         <p>Bienvenido a tu sitio de eventos, aquí mostramos todos los eventos pasados y futuros.</p>
       </div>
     </div>
@@ -46,23 +46,23 @@
       </ol>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="./Images/books.jpg" class="d-block w-100" alt="Evento 1">
+          <img src="./Images/cinema.jpg" class="d-block w-100" alt="Evento 1">
           <div class="carousel-caption d-none d-md-block">
-            <h5>School Book Fair</h5>
-            <p>Bring your unused school book and bring the one you need</p>
+            <h2>Evento 1</h2>
+            <p>Come in your scariest costume character to win amazing prize</p>
           </div>
         </div>
         <div class="carousel-item">
-          <img src="./Images/food_fair.jpg" class="d-block w-100" alt="Evento 2">
+          <img src="./Images/books.jpg" class="d-block w-100" alt="Evento 2">
           <div class="carousel-caption d-none d-md-block">
-            <h5>Festival of the collectivities</h5>
-            <p>Enjoy your favorite dishes from different countries in a unique event for the whole family</p>
+            <h2>Evento 2</h2>
+            <p>Bring your unused school book and bring the one you need</p>
           </div>
         </div>
         <div class="carousel-item">
           <img src="./Images/costume_party.jpg" class="d-block w-100" alt="Evento 3">
           <div class="carousel-caption d-none d-md-block">
-            <h5>Halloween Night</h5>
+            <h2>Evento 3</h2>
             <p>Come in your scariest costume character to win amazing prizes</p>
           </div>
         </div>
@@ -88,82 +88,50 @@
         <input type="search" class="form-control d-inline-block w-auto" placeholder="Buscar">
       </div>
     </div>
+
     <div class="row">
       <!-- Tarjetas de Eventos -->
       <div class="col-md-3 col-sm-6 mb-4">
         <div class="card">
-          <img src="./Images/costume_party.jpg" class="card-img-top" alt="Evento 1">
+          <img src="./Images/cinema.jpg" class="card-img-top" alt="Evento 1">
           <div class="card-body">
-            <h5 class="card-title">Evento</h5>
-            <p class="card-text">id: 3</p>
-            <p class="card-text">name: Halloween Night</p>
-            <p class="card-text">date: 2024-02-12</p>
-            <p class="card-text">description: Come in your scariest costume character to win amazing prizes</p>
-            <p class="card-text">category: Costume Party</p>
-            <p class="card-text">place: Room C</p>
-            <p class="card-text">capacity: 12000</p>
-            <p class="card-text">assistance: 9000</p>
-            <p class="card-text">price: $12</p>
-            <a href="details.html" class="btn btn-primary">Detalles</a>
+            <h5 class="card-title">Avengers</h5>
+            <a href="details.html?id=7" class="btn btn-primary">Detalles</a>
           </div>
         </div>
       </div>
+  
       <div class="col-md-3 col-sm-6 mb-4">
         <div class="card">
-          <img src="./Images/music_concert.jpg" class="card-img-top" alt="Evento 2">
+          <img src="./Images/books.jpg" class="card-img-top" alt="Evento 2">
           <div class="card-body">
-            <h5 class="card-title">Evento</h5>
-            <p class="card-text">id: 4</p>
-            <p class="card-text">name: Metallica in concert</p>
-            <p class="card-text">date: 2024-01-22</p>
-            <p class="card-text">description: The only concert of the most emblematic band in the world</p>
-            <p class="card-text">category: Music Concert</p>
-            <p class="card-text">place: Room A</p>
-            <p class="card-text">capacity: 138000</p>
-            <p class="card-text">assistance: 138000</p>
-            <p class="card-text">price: $150</p>
-            <a href="details.html" class="btn btn-primary">Detalles</a>
+            <h5 class="card-title">School Book Fair</h5>
+            <a href="details.html?id=6" class="btn btn-primary">Detalles</a>
           </div>
         </div>
       </div>
+
       <div class="col-md-3 col-sm-6 mb-4">
         <div class="card">
-          <img src="./Images/cinema.jpg" class="card-img-top" alt="Evento 2">
+          <img src="./Images/costume_party.jpg" class="card-img-top" alt="Evento 3">
           <div class="card-body">
-            <h5 class="card-title">Evento</h5>
-            <p class="card-text">id: 7</p>
-            <p class="card-text">name: Avengers</p>
-            <p class="card-text">date: 2023-10-15</p>
-            <p class="card-text">description: Marvel's Avengers 3d premiere the start of an epic saga with your best superheroes</p>
-            <p class="card-text">category: Let's go to the cinema</p>
-            <p class="card-text">place: Room D1</p>
-            <p class="card-text">capacity: 9000</p>
-            <p class="card-text">assistance: 9000</p>
-            <p class="card-text">price: $250</p>
-            <a href="details.html" class="btn btn-primary">Detalles</a>
+            <h5 class="card-title">Halloween Night</h5>
+            <a href="details.html?id=3" class="btn btn-primary">Detalles</a>
           </div>
         </div>
       </div>
+      
       <div class="col-md-3 col-sm-6 mb-4">
         <div class="card">
-          <img src="./Images/books.jpg" class="card-img-top" alt="Evento 4">
+          <img src="./Images/music_concert.jpg" class="card-img-top" alt="Evento 3">
           <div class="card-body">
-            <h5 class="card-title">Evento</h5>
-            <p class="card-text">id: 6</p>
-            <p class="card-text">name: Book Fair</p>
-            <p class="card-text">date: 2024-04-20</p>
-            <p class="card-text">description: Join us for a day of book readings and signings by various authors</p>
-            <p class="card-text">category: Literature</p>
-            <p class="card-text">place: Room D</p>
-            <p class="card-text">capacity: 10000</p>
-            <p class="card-text">assistance: 8000</p>
-            <p class="card-text">price: $10</p>
-            <a href="details.html" class="btn btn-primary">Detalles</a>
+            <h5 class="card-title">Metallica in concert</h5>
+            <a href="details.html?id=3" class="btn btn-primary">Detalles</a>
           </div>
         </div>
       </div>
     </div>
-
+    
     <div class="row">
       <div class="col-12 text-center">
         <div class="d-inline-block m-1">

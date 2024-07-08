@@ -73,6 +73,7 @@ h1 {
 .card {
   border: 2px solid #1e90ff;
   border-radius: 15px;
+  margin-bottom: 20px; /* Agregar margen entre tarjetas */
 }
 
 .card-img-top {
@@ -82,7 +83,7 @@ h1 {
 
 .card-title {
   color: #1e90ff;
-  font-size: 1.25rem;
+  font-size: 1.5rem; /* Aumentar el tamaño de la fuente */
   font-weight: bold;
 }
 
@@ -160,7 +161,7 @@ h1 {
 
 /* Table Styles */
 .table thead th {
-  background-color: #1e90ff;
+  background-color: #676b70;
   color: #ffffff;
   text-align: center;
   font-weight: bold;
@@ -176,7 +177,7 @@ h1 {
 
 .table-bordered th,
 .table-bordered td {
-  border: 2px solid #1e90ff;
+  border: 2px solid #c9e0f6;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
@@ -185,4 +186,58 @@ h1 {
 
 .table-hover tbody tr:hover {
   background-color: #e0f7ff;
+}
+
+/* Specific Styles for Event Details Page */
+.event-details-container {
+  margin-top: 30px;
+}
+
+.event-details-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.event-details-header h1 {
+  font-size: 3rem;
+  color: #1e90ff;
+}
+
+.event-details-body {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.event-details-body h5 {
+  font-size: 1.75rem;
+  margin-bottom: 20px;
+}
+
+.event-details-body p {
+  font-size: 1.25rem;
+}
+
+.event-details-footer {
+  margin-top: 30px;
+  text-align: center;
+}
+/* Estilos para el elemento "cohort" */
+.cohort {
+  background-color: #f8f9fa;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.cohort h4 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.cohort p {
+  font-size: 16px;
+  line-height: 1.6;
 }

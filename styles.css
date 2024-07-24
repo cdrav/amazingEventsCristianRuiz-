@@ -83,12 +83,16 @@ h1 {
 
 .card-title {
   color: #1e90ff;
-  font-size: 1.5rem; /* Aumentar el tamaño de la fuente */
+  font-size: 1.25rem; /* Aumentar el tamaño de la fuente */
+  word-break:normal;
+  overflow-wrap:break-word;
   font-weight: bold;
+  
 }
 
 .card-text {
   color: #343a40;
+  
 }
 
 .btn-primary {

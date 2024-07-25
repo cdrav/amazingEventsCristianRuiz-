@@ -1,15 +1,15 @@
-console.log("aqui se muestran eventos próximos");
+console.log("Hola aqui se muestran los eventos futuros");
 
 const eventos = datos.eventos;
-const fechaActual = new Date(datos.fechaActual); // "2023-01-01"
+const fechaActual = new Date(datos.fechaActual);
 
-function displayEvents(eventos) {
+function displayUpcomingEvents(eventos, fechaActual) {
     const container = document.getElementById("events-container");
     container.innerHTML = "";
 
-    eventos
-        .filter(evento => new Date(evento.fecha) > fechaActual)
-        .forEach(evento => {
+    for (let i = 0; i < eventos.length; i++) {
+        const evento = eventos[i];
+        if (new Date(evento.fecha) > fechaActual) {
             const eventoHTML = `
                 <div class="col-md-3 col-sm-6 mb-4">
                     <div class="card">
@@ -22,7 +22,8 @@ function displayEvents(eventos) {
                 </div>
             `;
             container.innerHTML += eventoHTML;
-        });
+        }
+    }
 }
 
-displayEvents(eventos);
+displayUpcomingEvents(eventos, fechaActual);

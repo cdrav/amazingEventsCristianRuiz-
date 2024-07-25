@@ -1,4 +1,4 @@
-console.log("aqui se muestran todos los eventos");
+console.log("Hola aqui se muestran todos los eventos");
 
 const eventos = datos.eventos;
 
@@ -6,8 +6,9 @@ function displayEvents(eventos) {
     const container = document.getElementById("events-container");
     container.innerHTML = "";
 
-    eventos.forEach(evento => {
-        const eventosHTML = `
+    for (let i = 0; i < eventos.length; i++) {
+        const evento = eventos[i];
+        const eventoHTML = `
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="card">
                     <img src="${evento.imagen}" class="card-img-top" alt="${evento.nombre}">
@@ -18,7 +19,8 @@ function displayEvents(eventos) {
                 </div>
             </div>
         `;
-        container.innerHTML += eventosHTML;
-    });
+        container.innerHTML += eventoHTML;
+    }
 }
+
 displayEvents(eventos);

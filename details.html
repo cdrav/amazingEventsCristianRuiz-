@@ -29,34 +29,29 @@
   </nav>
   
   <!-- Main Content -->
-  <div class="container event-details-container">
-    <div class="event-details-header">
-      <h1>Event Details</h1>
-    </div>
-    <div class="event-details-body">
-      <div class="row">
-        <div class="col-md-4">
-          <img src="./Images/food_fair.jpg" class="img-fluid" alt="Festival of the collectivities">
-        </div>
-        <div class="col-md-8">
-          <h5 class="card-title">Festival of the collectivities</h5>
-          <p class="card-text">ID: 1</p>
-          <p class="card-text">Name: Festival of the collectivities</p>
-          <p class="card-text">Date: 2022-12-12</p>
-          <p class="card-text">Description: Enjoy your favorite dishes from different countries in a unique event for the whole family</p>
-          <p class="card-text">Category: Food Fair</p>
-          <p class="card-text">Place: Room A</p>
-          <p class="card-text">Capacity: 45000</p>
-          <p class="card-text">Assistance: 42756</p>
-          <p class="card-text">Price: $5</p>
-        </div>
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-4">
+        <img id="event-image" src="" class="img-fluid" alt="Event Image">
+      </div>
+      <div class="col-md-8">
+        <h1 id="event-name" class="card-title"></h1>
+        <p id="event-id" class="card-text"></p>
+        <p id="event-date" class="card-text"></p>
+        <p id="event-description" class="card-text"></p>
+        <p id="event-category" class="card-text"></p>
+        <p id="event-place" class="card-text"></p>
+        <p id="event-capacity" class="card-text"></p>
+        <p id="event-assistance" class="card-text"></p>
+        <p id="event-price" class="card-text"></p>
       </div>
     </div>
-    <div class="event-details-footer">
+    <div class="mt-4">
       <a href="./upcoming-events.html" class="btn btn-primary">Volver a Eventos</a>
     </div>
   </div>
-  
+
+  <!-- Footer -->
   <footer class="text-center mt-4">
     <div class="social-links mb-3">
       <a href="https://www.facebook.com" target="_blank" class="mr-2">
@@ -72,8 +67,67 @@
     <div class="cohort">COHORT</div>
   </footer>
   
+  <!-- Script to dynamically fill event details -->
+  <script>
+    // Data object
+    const data = {
+      events: [
+        {
+          _id: "639c723b992482e5f2834be9",
+          name: "Festival of the collectivities",
+          image: "https://i.postimg.cc/Fs03hQDt/Fiesta-de-las-colectividades.jpg",
+          date: "2022-12-12",
+          description: "Enjoy your favorite dishes from different countries in a unique event for the whole family.",
+          category: "Food Fair",
+          place: "Room A",
+          capacity: 45000,
+          attendance: 42756,
+          price: 5,
+        },
+        // Otros eventos...
+      ],
+    };
+
+    // Function to get event ID from URL
+    function getEventIdFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("eventId");
+    }
+
+    // Function to display event details
+    function displayEventDetails(eventId) {
+      const event = data.events.find(e => e._id === eventId);
+
+      if (event) {
+        document.getElementById('event-image').src = event.image;
+        document.getElementById('event-name').textContent = event.name;
+        document.getElementById('event-id').textContent = `ID: ${event._id}`;
+        document.getElementById('event-date').textContent = `Date: ${event.date}`;
+        document.getElementById('event-description').textContent = `Description: ${event.description}`;
+        document.getElementById('event-category').textContent = `Category: ${event.category}`;
+        document.getElementById('event-place').textContent = `Place: ${event.place}`;
+        document.getElementById('event-capacity').textContent = `Capacity: ${event.capacity}`;
+        document.getElementById('event-assistance').textContent = `Assistance: ${event.attendance || 'N/A'}`;
+        document.getElementById('event-price').textContent = `Price: $${event.price}`;
+      } else {
+        document.querySelector('.container').innerHTML = '<p class="text-danger">Event not found.</p>';
+      }
+    }
+
+    // Load event details on page load
+    window.onload = function() {
+      const eventId = getEventIdFromURL();
+      if (eventId) {
+        displayEventDetails(eventId);
+      } else {
+        document.querySelector('.container').innerHTML = '<p class="text-danger">No event ID provided.</p>';
+      }
+    };
+  </script>
+
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="./details.js"></script>
 </body>
 </html>

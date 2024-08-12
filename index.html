@@ -76,18 +76,20 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
-    
     <div class="row mt-4">
       <!-- Categorías de Filtro -->
       <div class="col-12 text-center mb-4">
-        <button type="button" class="btn btn-outline-primary m-1">Categoría 1</button>
-        <button type="button" class="btn btn-outline-primary m-1">Categoría 2</button>
-        <button type="button" class="btn btn-outline-primary m-1">Categoría 3</button>
-        <button type="button" class="btn btn-outline-primary m-1">Categoría 4</button>
-        <button type="button" class="btn btn-outline-primary m-1">Categoría 5</button>
-        <input type="search" class="form-control d-inline-block w-auto" placeholder="Buscar">
+        <div class="checkbox-group">
+          <label><input type="checkbox" value="Categoría 1"> Category 1</label>
+          <label><input type="checkbox" value="Categoría 2"> Category 2</label>
+          <label><input type="checkbox" value="Categoría 3"> Category 3</label>
+          <label><input type="checkbox" value="Categoría 4"> Category 4</label>
+          <label><input type="checkbox" value="Categoría 5"> Category 5</label>
+          <input type="search" id="search-input" class="form-control d-inline-block w-auto mt-2" placeholder="Buscar">
+        </div>
       </div>
     </div>
+    
 
     <div class="row" id="events-container">
       <!-- Contenido de las tarjetas aquí -->
@@ -123,6 +125,8 @@
       </div>
     </div>
   </footer>
+
+
 
   <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

@@ -260,3 +260,31 @@ h1 {
   float:right; /* Alinea COHORT a la derecha */
   margin:auto /* Espacio superior para separarlo un poco de los iconos */
 }
+
+/* Contenedor Flex para Checkboxes y Barra de Búsqueda */
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap; /* Permite que las casillas se envuelvan si no hay espacio */
+  justify-content: center; /* Centra las casillas horizontalmente */
+  align-items: center; /* Alinea las casillas verticalmente */
+  margin-bottom: 20px; /* Espacio inferior para separar de otros elementos */
+}
+
+/* Estilo para cada Casilla de Verificación */
+.checkbox-group label {
+  margin-right: 15px; /* Espacio entre las casillas */
+  margin-bottom: 10px; /* Espacio inferior entre filas de casillas */
+  font-size: 16px; /* Tamaño de fuente */
+  display: flex;
+  align-items: center; /* Alinea el checkbox y el texto verticalmente */
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 5px; /* Espacio entre el checkbox y su etiqueta */
+}
+
+/* Estilo para la Barra de Búsqueda */
+.checkbox-group input[type="search"] {
+  margin-top: 10px; /* Espacio superior para separar de las casillas de verificación */
+  margin-left: 15px; /* Espacio izquierdo para separar del último checkbox */
+}

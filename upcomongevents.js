@@ -1,29 +1,29 @@
-console.log("Hola aqui se muestran los eventos futuros");
+console.log("Hello, here are the upcoming events displayed");
 
-const eventos = datos.eventos;
-const fechaActual = new Date(datos.fechaActual);
+const events = data.events;
+const currentDate = new Date(data.currentDate);
 
-function displayUpcomingEvents(eventos, fechaActual) {
+function displayUpcomingEvents(events, currentDate) {
     const container = document.getElementById("events-container");
     container.innerHTML = "";
 
-    for (let i = 0; i < eventos.length; i++) {
-        const evento = eventos[i];
-        if (new Date(evento.fecha) > fechaActual) {
-            const eventoHTML = `
-                <div class="col-md-3 col-sm-6 mb-4">
-                    <div class="card">
-                        <img src="${evento.imagen}" class="card-img-top" alt="${evento.nombre}">
-                        <div class="card-body">
-                            <h2 class="card-title">${evento.nombre}</h2>
-                            <a href="details.html?id=${evento._id}" class="btn btn-primary">Detalles</a>
-                        </div>
+    for (let i = 0; i < events.length; i++) {
+        const event = events[i];
+        const eventHTML = `
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card">
+                    <img src="${event.image}" class="card-img-top" alt="${event.name}">
+                    <div class="card-body">
+                        <h2 class="card-title">${event.name}</h2>
+                        <p class="card-text">${event.description}</p>
+                        <p class="card-text"><strong>Price:</strong> $${event.price}</p>
+                        <a href="details.html?id=${event._id}" class="btn btn-primary">Details</a>
                     </div>
                 </div>
-            `;
-            container.innerHTML += eventoHTML;
-        }
+            </div>
+        `;
+        container.innerHTML += eventHTML;
     }
 }
 
-displayUpcomingEvents(eventos, fechaActual);
+displayUpcomingEvents(events, currentDate);

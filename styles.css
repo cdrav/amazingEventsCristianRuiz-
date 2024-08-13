@@ -193,41 +193,6 @@ h1 {
   background-color: #e0f7ff;
 }
 
-/* Specific Styles for Event Details Page */
-.event-details-container {
-  margin-top: 30px;
-}
-
-.event-details-header {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.event-details-header h1 {
-  font-size: 3rem;
-  color: #1e90ff;
-}
-
-.event-details-body {
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.event-details-body h5 {
-  font-size: 1.75rem;
-  margin-bottom: 20px;
-}
-
-.event-details-body p {
-  font-size: 1.25rem;
-}
-
-.event-details-footer {
-  margin-top: 30px;
-  text-align: center;
-}
 
 /* Estilos para el elemento "cohort" */
 .cohort {
@@ -261,30 +226,82 @@ h1 {
   margin:auto /* Espacio superior para separarlo un poco de los iconos */
 }
 
-/* Contenedor Flex para Checkboxes y Barra de Búsqueda */
-.checkbox-group {
-  display: flex;
-  flex-wrap: wrap; /* Permite que las casillas se envuelvan si no hay espacio */
-  justify-content: center; /* Centra las casillas horizontalmente */
-  align-items: center; /* Alinea las casillas verticalmente */
-  margin-bottom: 20px; /* Espacio inferior para separar de otros elementos */
+
+/* Specific Styles for Event Details Page */
+.event-details-container {
+  margin: 30px auto;
+  max-width: 800px; /* Ajusta el ancho máximo del contenedor */
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo para cada Casilla de Verificación */
-.checkbox-group label {
-  margin-right: 15px; /* Espacio entre las casillas */
-  margin-bottom: 10px; /* Espacio inferior entre filas de casillas */
-  font-size: 16px; /* Tamaño de fuente */
-  display: flex;
-  align-items: center; /* Alinea el checkbox y el texto verticalmente */
+.event-details-header {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.checkbox-group input[type="checkbox"] {
-  margin-right: 5px; /* Espacio entre el checkbox y su etiqueta */
+.event-details-header h1 {
+  font-size: 2rem; /* Ajusta el tamaño del título */
+  color: #1e90ff;
 }
 
-/* Estilo para la Barra de Búsqueda */
-.checkbox-group input[type="search"] {
-  margin-top: 10px; /* Espacio superior para separar de las casillas de verificación */
-  margin-left: 15px; /* Espacio izquierdo para separar del último checkbox */
+.event-details-body img {
+  width: 100%; 
+  max-width: 600px; 
+  height: auto; 
+  border-radius: 10px;
+  margin-bottom: 20px;
+  object-fit:cover;
+
+}
+
+.event-details-body img {
+  width: 100%; /* Ajusta la imagen al ancho del contenedor */
+  max-width: 600px; /* Limita el tamaño máximo de la imagen */
+  height: auto; /* Mantiene la proporción de la imagen */
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.event-details-body h2 {
+  font-size: 1.5rem; /* Ajusta el tamaño de los subtítulos */
+  color: #343a40;
+  margin-bottom: 15px;
+}
+
+.event-details-body p {
+  font-size: 1rem; /* Ajusta el tamaño del texto */
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.event-details-footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.event-details-footer p {
+  font-size: 0.875rem; /* Ajusta el tamaño del texto en el pie de página */
+  color: #343a40;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .event-details-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .event-details-body h2 {
+    font-size: 1.25rem;
+  }
+
+  .event-details-body p {
+    font-size: 0.875rem;
+  }
+
+  .event-details-body img {
+    max-width: 100%; /* Asegura que la imagen se ajuste al tamaño de la pantalla en dispositivos pequeños */
+  }
 }

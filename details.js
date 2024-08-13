@@ -1,31 +1,24 @@
-// details.js
+document.addEventListener('DOMContentLoaded', () => {
+  // Capturar el ID del evento de la URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const eventId = urlParams.get('id');
 
-function getEventIdFromURL() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('eventId');
+  // Buscar el evento por ID en los datos
+  const event = data.events.find(event => event._id === eventId);
+
+  // Si se encuentra el evento, mostrar los detalles
+  if (event) {
+    document.getElementById('event-name').textContent = event.name;
+    document.getElementById('event-image').src = event.image;
+    document.getElementById('event-date').textContent = new Date(event.date).toLocaleDateString(); // Formato de fecha
+    document.getElementById('event-description').textContent = event.description;
+    document.getElementById('event-category').textContent = event.category;
+    document.getElementById('event-place').textContent = event.place;
+    document.getElementById('event-capacity').textContent = event.capacity;
+    document.getElementById('event-attendance').textContent = event.attendance ? event.attendance : 'N/A'; // Muestra 'N/A' si no hay asistencia
+    document.getElementById('event-price').textContent = `$${event.price}`;
+  } else {
+    // Manejar el caso en que el evento no se encuentre
+    document.getElementById('event-details').innerHTML = '<p>Event not found.</p>';
   }
-  
-  function displayEventDetails(eventId) {
-    // Buscar el evento en la data
-    const event = data.events.find(e => e._id === eventId);
-  
-    if (event) {
-      const eventDetails = document.getElementById('event-details');
-      eventDetails.innerHTML = `
-        <div class="card">
-          <img src="${event.image}" class="card-img-top" alt="${event.name}">
-          <div class="card-body">
-            <h5 class="card-title">${event.name}</h5>
-            <p class="card-text">${event.description}</p>
-          </div>
-        </div>
-      `;
-    } else {
-      // Manejar el caso en que no se encuentra el evento
-      document.getElementById('event-details').innerHTML = '<p>Evento no encontrado.</p>';
-    }
-  }
-  
-  const eventId = getEventIdFromURL();
-  displayEventDetails(eventId);
-  
+});

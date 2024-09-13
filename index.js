@@ -1,7 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
     const categoryCheckboxesContainer = document.querySelector('.col-12.text-center.mb-4');
     const eventsContainer = document.getElementById('events-container');
-    const events = data.events; 
+    const searchInput = document.getElementById('search-input');
+
+    // URL de la API
+    const apiUrl = 'https://aulamindhub.github.io/amazing-api/events.json';
+
+    // Función para obtener eventos de la API
+    async function fetchEvents() {
+        try {
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            return data.events; // Devuelve los eventos de la API
+        } catch (error) {
+            console.error('Error fetching events:', error);
+            return [];
+        }
+    }
 
     // Función para extraer categorías únicas
     function getUniqueCategories(events) {
@@ -22,13 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         categoryCheckboxesContainer.innerHTML += '<input type="search" id="search-input" class="form-control d-inline-block w-auto mt-2" placeholder="Buscar">';
     }
 
-    // Mostrar categorías al cargar la página
-    const uniqueCategories = getUniqueCategories(events);
-    displayCategoryCheckboxes(uniqueCategories);
-
-    // Reasignar searchInput después de generar dinámicamente los elementos
-    const searchInput = document.getElementById('search-input');
-    
+    // Función para mostrar eventos en la página
     function displayEvents(events) {
         eventsContainer.innerHTML = '';
         events.forEach(event => {
@@ -49,10 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function filterEvents() {
+    // Función para filtrar eventos según los checkboxes y el campo de búsqueda
+    function filterEvents(events) {
         const searchTerm = searchInput.value.toLowerCase();
-        const selectedCategories = Array.from(document.querySelectorAll('input[type="checkbox"]'))
-            .filter(checkbox => checkbox.checked)
+        const selectedCategories = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
             .map(checkbox => checkbox.value);
 
         const filteredEvents = events.filter(event => {
@@ -68,10 +77,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Listeners
-    searchInput.addEventListener('input', filterEvents);
-    categoryCheckboxesContainer.addEventListener('change', filterEvents);
+    // Función para manejar la carga de eventos y la inicialización de filtros
+    async function initializePage() {
+        const events = await fetchEvents();
+        const uniqueCategories = getUniqueCategories(events);
+        displayCategoryCheckboxes(uniqueCategories);
+        displayEvents(events);
 
-    // Initial display
-    displayEvents(events);
+        // Event listeners para el filtrado de eventos
+        document.addEventListener('change', () => filterEvents(events));
+        searchInput.addEventListener('input', () => filterEvents(events));
+    }
+
+    initializePage();
 });

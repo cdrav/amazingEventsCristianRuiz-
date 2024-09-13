@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', () => {
     const categoryCheckboxesContainer = document.querySelector('.col-12.text-center.mb-4');
     const eventsContainer = document.getElementById('events-container');
 
@@ -6,15 +6,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     const apiUrl = 'https://aulamindhub.github.io/amazing-api/events.json';
 
     // Función para obtener eventos de la API
-    async function fetchEvents() {
-        try {
-            const response = await fetch(apiUrl);
-            const data = await response.json();
-            return data; // Devuelve el objeto completo que contiene eventos y fecha actual
-        } catch (error) {
-            console.error('Error fetching events:', error);
-            return { events: [], currentDate: new Date() }; // Devuelve un objeto vacío en caso de error
-        }
+    function fetchEvents() {
+        return fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => data) // Devuelve el objeto completo que contiene eventos y fecha actual
+            .catch(error => {
+                console.error('Error fetching events:', error);
+                return { events: [], currentDate: new Date() }; // Devuelve un objeto vacío en caso de error
+            });
     }
 
     // Función para generar checkboxes de categorías
@@ -74,24 +73,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Inicializa la página
-    async function initializePage() {
-        const data = await fetchEvents();
-        const events = data.events;
-        const currentDate = new Date(data.currentDate);
+    function initializePage() {
+        fetchEvents()
+            .then(data => {
+                const events = data.events;
+                const currentDate = new Date(data.currentDate);
 
-        // Obtener y mostrar categorías únicas
-        const categories = [...new Set(events.map(event => event.category))];
-        generateCategoryCheckboxes(categories);
+                // Obtener y mostrar categorías únicas
+                const categories = [...new Set(events.map(event => event.category))];
+                generateCategoryCheckboxes(categories);
 
-        // Mostrar eventos pasados
-        filterAndDisplayEvents(events, currentDate);
+                // Mostrar eventos pasados
+                filterAndDisplayEvents(events, currentDate);
 
-        // Agregar event listeners para filtros
-        document.querySelectorAll('.col-12.text-center.mb-4 input[type="checkbox"]').forEach(checkbox => {
-            checkbox.addEventListener('change', () => filterAndDisplayEvents(events, currentDate));
-        });
+                // Agregar event listeners para filtros
+                document.querySelectorAll('.col-12.text-center.mb-4 input[type="checkbox"]').forEach(checkbox => {
+                    checkbox.addEventListener('change', () => filterAndDisplayEvents(events, currentDate));
+                });
 
-        document.getElementById('search-input').addEventListener('input', () => filterAndDisplayEvents(events, currentDate));
+                document.getElementById('search-input').addEventListener('input', () => filterAndDisplayEvents(events, currentDate));
+            });
     }
 
     initializePage();

@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const categoryCheckboxesContainer = document.querySelector('.col-12.text-center.mb-4');
     const eventsContainer = document.getElementById('events-container');
-    const searchInput = document.getElementById('search-input');
 
     // URL de la API
     const apiUrl = 'https://aulamindhub.github.io/amazing-api/events.json';
@@ -10,85 +9,90 @@ document.addEventListener('DOMContentLoaded', () => {
     function fetchEvents() {
         return fetch(apiUrl)
             .then(response => response.json())
-            .then(data => data.events) // Devuelve los eventos de la API
+            .then(data => data) // Devuelve el objeto completo que contiene eventos y fecha actual
             .catch(error => {
                 console.error('Error fetching events:', error);
-                return [];
+                return { events: [], currentDate: new Date() }; // Devuelve un objeto vacío en caso de error
             });
     }
 
-    // Función para extraer categorías únicas
-    function getUniqueCategories(events) {
-        const categories = events.map(event => event.category);
-        return [...new Set(categories)];
-    }
+    // Función para generar checkboxes de categorías
+    function generateCategoryCheckboxes(categories) {
+        categoryCheckboxesContainer.innerHTML = ''; // Limpiar el contenedor de las categorías
 
-    // Función para mostrar categorías como checkboxes
-    function displayCategoryCheckboxes(categories) {
-        categoryCheckboxesContainer.innerHTML = ''; // Limpiar contenedor de categorías
         categories.forEach(category => {
-            const categoryHTML = `
-                <label><input type="checkbox" value="${category}"> ${category}</label>
-            `;
-            categoryCheckboxesContainer.innerHTML += categoryHTML;
+            const label = document.createElement('label');
+            label.innerHTML = `<input type="checkbox" value="${category}"> ${category}`;
+            categoryCheckboxesContainer.appendChild(label);
         });
-        // Agregar el campo de búsqueda si no existe
-        if (!document.getElementById('search-input')) {
-            categoryCheckboxesContainer.innerHTML += '<input type="search" id="search-input" class="form-control d-inline-block w-auto mt-2" placeholder="Buscar">';
-        }
+
+        // Agregar el campo de búsqueda
+        const searchInput = document.createElement('input');
+        searchInput.type = 'search';
+        searchInput.id = 'search-input';
+        searchInput.className = 'form-control d-inline-block w-auto mt-2'; // Estilo para el campo de búsqueda
+        searchInput.placeholder = 'Buscar';
+        categoryCheckboxesContainer.appendChild(searchInput);
     }
 
-    // Función para mostrar eventos en la página
-    function displayEvents(events) {
-        eventsContainer.innerHTML = '';
-        events.forEach(event => {
-            const eventHTML = `
-                <div class="col-md-3 col-sm-6 mb-4">
-                    <div class="card">
-                        <img src="${event.image}" class="card-img-top" alt="${event.name}">
-                        <div class="card-body">
-                            <h2 class="card-title">${event.name}</h2>
-                            <p class="card-text">${event.description}</p>
-                            <p class="card-text"><strong>Price:</strong> $${event.price}</p>
-                            <a href="details.html?id=${event._id}" class="btn btn-primary">Details</a>
-                        </div>
-                    </div>
-                </div>
-            `;
-            eventsContainer.innerHTML += eventHTML;
-        });
-    }
+    // Función para filtrar y mostrar eventos (modificado para ser aplicable a la página de "HOME")
+    function filterAndDisplayEvents(events, currentDate) {
+        const searchTerm = document.getElementById('search-input').value.toLowerCase(); // Capturar el valor de búsqueda
+        const selectedCategories = Array.from(document.querySelectorAll('.col-12.text-center.mb-4 input[type="checkbox"]:checked'))
+            .map(checkbox => checkbox.value); // Obtener las categorías seleccionadas
 
-    // Función para filtrar eventos según los checkboxes y el campo de búsqueda
-    function filterEvents(events) {
-        const searchTerm = searchInput.value.toLowerCase();
-        const selectedCategories = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
-            .map(checkbox => checkbox.value);
-
+        // Filtrar eventos
         const filteredEvents = events.filter(event => {
             const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(event.category);
             const matchesSearch = event.name.toLowerCase().includes(searchTerm);
             return matchesCategory && matchesSearch;
         });
 
+        eventsContainer.innerHTML = ''; // Limpiar el contenedor de eventos
+
         if (filteredEvents.length === 0) {
             eventsContainer.innerHTML = '<p>No events found.</p>';
         } else {
-            displayEvents(filteredEvents);
+            // Mostrar eventos filtrados
+            filteredEvents.forEach(event => {
+                const eventHTML = `
+                    <div class="col-md-3 col-sm-6 mb-4">
+                        <div class="card">
+                            <img src="${event.image}" class="card-img-top" alt="${event.name}">
+                            <div class="card-body">
+                                <h2 class="card-title">${event.name}</h2>
+                                <p class="card-text">${event.description}</p>
+                                <p class="card-text"><strong>Price:</strong> $${event.price}</p>
+                                <a href="details.html?id=${event._id}" class="btn btn-primary">Details</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                eventsContainer.innerHTML += eventHTML;
+            });
         }
     }
 
-    // Función para manejar la carga de eventos y la inicialización de filtros
+    // Inicializa la página
     function initializePage() {
         fetchEvents()
-            .then(events => {
-                const uniqueCategories = getUniqueCategories(events);
-                displayCategoryCheckboxes(uniqueCategories);
-                displayEvents(events);
+            .then(data => {
+                const events = data.events;
+                const currentDate = new Date(data.currentDate);
 
-                // Event listeners para el filtrado de eventos
-                document.addEventListener('change', () => filterEvents(events));
-                searchInput.addEventListener('input', () => filterEvents(events));
+                // Obtener y mostrar categorías únicas
+                const categories = [...new Set(events.map(event => event.category))];
+                generateCategoryCheckboxes(categories);
+
+                // Mostrar todos los eventos inicialmente
+                filterAndDisplayEvents(events, currentDate);
+
+                // Agregar event listeners para filtros
+                document.querySelectorAll('.col-12.text-center.mb-4 input[type="checkbox"]').forEach(checkbox => {
+                    checkbox.addEventListener('change', () => filterAndDisplayEvents(events, currentDate));
+                });
+
+                document.getElementById('search-input').addEventListener('input', () => filterAndDisplayEvents(events, currentDate));
             });
     }
 

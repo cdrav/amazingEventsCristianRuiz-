@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,13 +9,15 @@
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
 </head>
+
 <body>
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
-      <img src="./Images/amazing_brand.png" alt="Logo" style="height: 40px;">
+      <img src="./Images/amazing_brand.png" alt="Amazing Events Logo" style="height: 40px;">
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -27,17 +30,17 @@
       </ul>
     </div>
   </nav>
-  
+
   <!-- Main Content -->
   <div class="container mt-4">
     <div class="row">
       <div class="col-12 text-center">
-        <h1>HOME</h1>
-        <p>Welcome to your events site, here we show all past and future events.</p>
+        <h1>Welcome to Amazing Events</h1>
+        <p>Here we showcase all past and future events. Stay tuned for the most exciting events!</p>
       </div>
     </div>
-    
-    <!-- Carrusel -->
+
+    <!-- Carousel -->
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -46,24 +49,24 @@
       </ol>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="./Images/avengerssprint2.jpg" class="d-block w-100" alt="Evento 1">
+          <img src="./Images/avengerssprint2.jpg" class="d-block w-100" alt="Avengers Event">
           <div class="carousel-caption d-none d-md-block">
             <h2>Avengers</h2>
-            <p>Marvel's Avengers 3d premiere the start of an epic saga with your best superheroes</p>
+            <p>Marvel's Avengers 3D premiere: the start of an epic saga with your favorite superheroes.</p>
           </div>
         </div>
         <div class="carousel-item">
-          <img src="./Images/halloweensprint2.jpg" class="d-block w-100" alt="Evento 2">
+          <img src="./Images/halloweensprint2.jpg" class="d-block w-100" alt="Halloween Event">
           <div class="carousel-caption d-none d-md-block">
             <h2>Halloween Night</h2>
-            <p>Come in your scariest costume character to win amazing prizes</p>
+            <p>Come in your scariest costume and win amazing prizes!</p>
           </div>
         </div>
         <div class="carousel-item">
-          <img src="./Images/feriadellibrosprint2.jpg" class="d-block w-100" alt="Evento 3">
+          <img src="./Images/feriadellibrosprint2.jpg" class="d-block w-100" alt="School Book Fair">
           <div class="carousel-caption d-none d-md-block">
             <h2>School Book Fair</h2>
-            <p>Bring your unused school book and bring the one you need</p>
+            <p>Bring your unused books and exchange them for the ones you need!</p>
           </div>
         </div>
       </div>
@@ -76,23 +79,38 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
+
+    <!-- Filter Categories and Search Bar -->
     <div class="row mt-4">
-      <!-- Categorías de Filtro -->
       <div class="col-12 text-center mb-4">
-        <div class="checkbox-group">
-          <label><input type="checkbox" value="Categoría 1"> Category 1</label>
-          <label><input type="checkbox" value="Categoría 2"> Category 2</label>
-          <label><input type="checkbox" value="Categoría 3"> Category 3</label>
-          <label><input type="checkbox" value="Categoría 4"> Category 4</label>
-          <label><input type="checkbox" value="Categoría 5"> Category 5</label>
-          <input type="search" id="search-input" class="form-control d-inline-block w-auto mt-2" placeholder="Buscar">
+        <div class="row">
+          <div class="col-md-6">
+            <!-- Filter Categories -->
+            <div class="checkbox-group text-left">
+              <label><input type="checkbox" value="Category 1"> Category 1</label>
+              <label><input type="checkbox" value="Category 2"> Category 2</label>
+              <label><input type="checkbox" value="Category 3"> Category 3</label>
+              <label><input type="checkbox" value="Category 4"> Category 4</label>
+              <label><input type="checkbox" value="Category 5"> Category 5</label>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <!-- Search Input -->
+            <div class="input-group">
+              <input type="search" id="search-input" class="form-control" placeholder="Search events">
+              <div class="input-group-append">
+                <button class="btn btn-primary" id="search-button" type="button">Search</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    
 
+    <!-- Events Container -->
     <div class="row" id="events-container">
-      <!-- Contenido de las tarjetas aquí -->
+      <!-- Cards will be dynamically loaded here -->
     </div>
   </div>
 
@@ -102,31 +120,27 @@
       <div class="row">
         <div class="col-12 text-center">
           <div class="d-inline-block m-1">
-            <a href="https://www.facebook.com" target="_blank">
-              <img src="./Images/facebook.png" alt="Facebook" style="height: 40px;">
+            <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+              <img src="./Images/facebook.png" alt="Facebook Icon" style="height: 40px;">
             </a>
           </div>
           <div class="d-inline-block m-1">
-            <a href="https://www.whatsapp.com" target="_blank">
-              <img src="./Images/whatsapp.png" alt="WhatsApp" style="height: 40px;">
+            <a href="https://www.whatsapp.com" target="_blank" aria-label="WhatsApp">
+              <img src="./Images/whatsapp.png" alt="WhatsApp Icon" style="height: 40px;">
             </a>
           </div>
           <div class="d-inline-block m-1">
-            <a href="https://www.instagram.com" target="_blank">
-              <img src="./Images/instagram.png" alt="Instagram" style="height: 40px;">
+            <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+              <img src="./Images/instagram.png" alt="Instagram Icon" style="height: 40px;">
             </a>
           </div>
-          <div class="social-icons">
-            <div class="d-inline-block m-1">
-              COHORT
-            </div>
+          <div class="d-inline-block m-1">
+            <span>COHORT</span>
           </div>
         </div>
       </div>
     </div>
   </footer>
-
-
 
   <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -135,4 +149,5 @@
   <script src="./modules/functions.js"></script>
   <script src="./index.js"></script>
 </body>
+
 </html>

@@ -1,49 +1,48 @@
-// Función para obtener los eventos de la API
-async function fetchEvents() {
-    const response = await fetch('https://aulamindhub.github.io/amazing-api/events.json');
-    const data = await response.json();
-    return data.events; // Ajusta si la estructura de los datos es diferente
-  }
+document.addEventListener('DOMContentLoaded', () => {
+    // Capturar el ID del evento de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const eventId = urlParams.get('id');
+    console.log('Event ID from URL:', eventId); // Mensaje de depuración
   
-  // Función para filtrar y mostrar los eventos según la página actual
-  async function displayEvents() {
-    const events = await fetchEvents();
-    
-    const page = document.body.dataset.page; // Utiliza un atributo de datos en el cuerpo para determinar la página actual
-    
-    let filteredEvents;
-    
-    if (page === 'home') {
-      filteredEvents = events; // Muestra todos los eventos en la página de inicio
-    } else if (page === 'upcoming') {
-      const currentDate = new Date();
-      filteredEvents = events.filter(event => new Date(event.date) > currentDate); // Filtra eventos futuros
-    } else if (page === 'past') {
-      const currentDate = new Date();
-      filteredEvents = events.filter(event => new Date(event.date) <= currentDate); // Filtra eventos pasados
+    // Función para obtener los eventos de la API
+    function fetchEvents() {
+      return fetch('https://aulamindhub.github.io/amazing-api/events.json')
+        .then(response => response.json())
+        .then(data => {
+          console.log('Fetched events:', data.events); // Mensaje de depuración
+          return data.events;
+        })
+        .catch(error => {
+          console.error('Error fetching events:', error);
+          return [];
+        });
     }
   
-    const eventsContainer = document.getElementById('events-container');
-    eventsContainer.innerHTML = ''; // Limpia el contenedor
+    // Función para mostrar los detalles del evento
+    function displayEventDetails() {
+      fetchEvents().then(events => {
+        const event = events.find(event => event._id === eventId);
+        console.log('Found event:', event); // Mensaje de depuración
   
-    filteredEvents.forEach(event => {
-      // Crea y agrega tarjetas de eventos al contenedor
-      const eventCard = document.createElement('div');
-      eventCard.classList.add('col-md-4', 'mb-4');
-      eventCard.innerHTML = `
-        <div class="card">
-          <img src="${event.image}" class="card-img-top" alt="${event.title}">
-          <div class="card-body">
-            <h5 class="card-title">${event.title}</h5>
-            <p class="card-text">${event.description}</p>
-            <p class="card-text"><small class="text-muted">${event.date}</small></p>
-          </div>
-        </div>
-      `;
-      eventsContainer.appendChild(eventCard);
-    });
-  }
+        // Si se encuentra el evento, mostrar los detalles
+        if (event) {
+          document.getElementById('event-name').textContent = event.name;
+          document.getElementById('event-image').src = event.image;
+          document.getElementById('event-date').textContent = new Date(event.date).toLocaleDateString(); // Formato de fecha
+          document.getElementById('event-description').textContent = event.description;
+          document.getElementById('event-category').textContent = event.category;
+          document.getElementById('event-place').textContent = event.place;
+          document.getElementById('event-capacity').textContent = event.capacity;
+          document.getElementById('event-attendance').textContent = event.attendance ? event.attendance : 'N/A'; // Muestra 'N/A' si no hay asistencia
+          document.getElementById('event-price').textContent = `$${event.price}`;
+        } else {
+          // Manejar el caso en que el evento no se encuentre
+          document.getElementById('event-details').innerHTML = '<p>Event not found.</p>';
+        }
+      });
+    }
   
-  // Llama a displayEvents cuando se cargue la página
-  document.addEventListener('DOMContentLoaded', displayEvents);
+    // Llama a displayEventDetails cuando se cargue la página
+    displayEventDetails();
+  });
   

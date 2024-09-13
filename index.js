@@ -7,15 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const apiUrl = 'https://aulamindhub.github.io/amazing-api/events.json';
 
     // Función para obtener eventos de la API
-    async function fetchEvents() {
-        try {
-            const response = await fetch(apiUrl);
-            const data = await response.json();
-            return data.events; // Devuelve los eventos de la API
-        } catch (error) {
-            console.error('Error fetching events:', error);
-            return [];
-        }
+    function fetchEvents() {
+        return fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => data.events) // Devuelve los eventos de la API
+            .catch(error => {
+                console.error('Error fetching events:', error);
+                return [];
+            });
     }
 
     // Función para extraer categorías únicas
@@ -33,8 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             categoryCheckboxesContainer.innerHTML += categoryHTML;
         });
-        // Agregar el campo de búsqueda
-        categoryCheckboxesContainer.innerHTML += '<input type="search" id="search-input" class="form-control d-inline-block w-auto mt-2" placeholder="Buscar">';
+        // Agregar el campo de búsqueda si no existe
+        if (!document.getElementById('search-input')) {
+            categoryCheckboxesContainer.innerHTML += '<input type="search" id="search-input" class="form-control d-inline-block w-auto mt-2" placeholder="Buscar">';
+        }
     }
 
     // Función para mostrar eventos en la página
@@ -78,15 +79,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Función para manejar la carga de eventos y la inicialización de filtros
-    async function initializePage() {
-        const events = await fetchEvents();
-        const uniqueCategories = getUniqueCategories(events);
-        displayCategoryCheckboxes(uniqueCategories);
-        displayEvents(events);
+    function initializePage() {
+        fetchEvents()
+            .then(events => {
+                const uniqueCategories = getUniqueCategories(events);
+                displayCategoryCheckboxes(uniqueCategories);
+                displayEvents(events);
 
-        // Event listeners para el filtrado de eventos
-        document.addEventListener('change', () => filterEvents(events));
-        searchInput.addEventListener('input', () => filterEvents(events));
+                // Event listeners para el filtrado de eventos
+                document.addEventListener('change', () => filterEvents(events));
+                searchInput.addEventListener('input', () => filterEvents(events));
+            });
     }
 
     initializePage();
